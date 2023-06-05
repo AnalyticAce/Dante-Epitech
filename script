@@ -1,0 +1,9 @@
+#!/bin/bash
+
+USERS=("" "")
+
+for user in "${USERS[@]}"
+do
+    echo "Statistiques pour $user :"
+    git log --author="$user" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "Lignes ajoutées: %s, Lignes supprimées: %s, Total des lignes: %s\n", add, subs, loc }'
+done
